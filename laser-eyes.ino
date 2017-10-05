@@ -1,7 +1,7 @@
 #include <Adafruit_NeoPixel.h>
 
-#define PIN 6
-#define NUM_LEDS 2
+const uint16_t NUM_LEDS = 2;
+const uint8_t PIN = 6;
 
 Adafruit_NeoPixel eyes = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 bool blinker = true;
