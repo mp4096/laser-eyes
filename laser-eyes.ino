@@ -4,7 +4,6 @@ const uint16_t NUM_LEDS = 2;
 const uint8_t PIN = 6;
 
 Adafruit_NeoPixel eyes = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
-bool blinker = true;
 
 void setup() {
   eyes.begin();
@@ -13,14 +12,32 @@ void setup() {
 }
 
 void loop() {
-  if (blinker) {
-    eyes.setPixelColor(0, 227, 114, 34); // TUM orange
-    eyes.setPixelColor(1, 0, 101, 189); // TUM blue
-  } else {
-    eyes.setPixelColor(1, 227, 114, 34); // TUM orange
-    eyes.setPixelColor(0, 0, 101, 189); // TUM blue
+  breathe_blue(20);
+  breathe_orange(20);
+}
+
+void breathe_blue(uint8_t wait) {
+  uint16_t j;
+  float m;
+
+  for (j = 0; j < 256; j++) {
+    m = sin(j * 0.01231997119);
+    eyes.setPixelColor(0, 0, int(101.0 * m), int(189.0 * m)); // TUM blue
+    eyes.setPixelColor(1, 0, int(101.0 * m), int(189.0 * m)); // TUM blue
+    eyes.show();
+    delay(wait);
   }
-  eyes.show();
-  blinker = !blinker;
-  delay(100);
+}
+
+void breathe_orange(uint8_t wait) {
+  uint16_t j;
+  float m;
+
+  for (j = 0; j < 256; j++) {
+    m = sin(j * 0.01231997119);
+    eyes.setPixelColor(0, int(227.0 * m), int(114.0 * m), int(34.0 * m)); // TUM blue
+    eyes.setPixelColor(1, int(227.0 * m), int(114.0 * m), int(34.0 * m)); // TUM blue
+    eyes.show();
+    delay(wait);
+  }
 }
