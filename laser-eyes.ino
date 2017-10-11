@@ -35,8 +35,8 @@ void breathe_orange(uint8_t wait) {
 
   for (j = 0; j < 256; j++) {
     m = sin(j * 0.01231997119);
-    eyes.setPixelColor(0, int(227.0 * m), int(114.0 * m), int(34.0 * m)); // TUM blue
-    eyes.setPixelColor(1, int(227.0 * m), int(114.0 * m), int(34.0 * m)); // TUM blue
+    eyes.setPixelColor(0, int(227.0 * m), int(114.0 * m), int(34.0 * m)); // TUM orange
+    eyes.setPixelColor(1, int(227.0 * m), int(114.0 * m), int(34.0 * m)); // TUM orange
     eyes.show();
     delay(wait);
   }
